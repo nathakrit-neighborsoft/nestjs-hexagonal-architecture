@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ExpenseController } from './adapters/inbounds/expense.controller';
-import { ExpenseTypeOrmRepository } from './adapters/outbounds/expense.typeorm.repository';
+import { ExpenseDrizzleRepository } from './adapters/outbounds/expense.drizzle.repository';
 import { expenseRepositoryToken } from './applications/ports/expense.repository';
 import { CreateExpenseUseCase } from './applications/usecases/createExpense.usecase';
 import { DeleteExpenseByIdUseCase } from './applications/usecases/deleteExpenseById.usecase';
@@ -14,7 +14,7 @@ import { UpdateExpenseByIdUseCase } from './applications/usecases/updateExpenseB
   providers: [
     {
       provide: expenseRepositoryToken,
-      useClass: ExpenseTypeOrmRepository,
+      useClass: ExpenseDrizzleRepository,
     },
     CreateExpenseUseCase,
     DeleteExpenseByIdUseCase,

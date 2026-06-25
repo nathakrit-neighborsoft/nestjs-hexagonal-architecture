@@ -3,7 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
 import { jwtExpiresIn, jwtSecret } from '../configs/jwt.config';
-import { UserTypeOrmRepository } from '../users/adapters/outbounds/user.typeorm.repository';
+import { UserDrizzleRepository } from '../users/adapters/outbounds/user.drizzle.repository';
 import { userRepositoryToken } from '../users/applications/ports/user.repository';
 import { AuthController } from './adapters/inbounds/auth.controller';
 import { JwtStrategy } from './jwtStrategy';
@@ -19,7 +19,7 @@ import { RegisterUseCase } from './usecases/register.usecase';
     RegisterUseCase,
     {
       provide: userRepositoryToken,
-      useClass: UserTypeOrmRepository,
+      useClass: UserDrizzleRepository,
     },
   ],
 })

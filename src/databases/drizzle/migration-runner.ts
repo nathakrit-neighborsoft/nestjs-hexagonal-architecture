@@ -1,15 +1,12 @@
-#!/usr/bin/env ts-node
-
-import 'dotenv/config';
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import * as schema from '../schemas';
 import { migrationsHistory } from '../schemas';
 
-const MIGRATIONS_FOLDER = __dirname + '/../drizzle/migrations';
+const MIGRATIONS_FOLDER = __dirname + '/migrations';
 
-async function resetDatabase() {
+export async function runMigrations() {
   const pool = new Pool({
     host: process.env.DB_HOST || 'localhost',
     port: Number(process.env.DB_PORT) || 5432,
@@ -18,35 +15,40 @@ async function resetDatabase() {
     database: process.env.DB_DATABASE || 'nestjs-hexagonal-architecture-typeorm',
   });
 
+  const db = drizzle(pool, { schema });
+  const startTime = Date.now();
+
   try {
-    console.log('Dropping all tables...');
-    const client = await pool.connect();
-    await client.query('DROP SCHEMA public CASCADE; CREATE SCHEMA public;');
-    client.release();
-
-    console.log('Running migrations...');
-    const db = drizzle(pool, { schema });
-    const startTime = Date.now();
-
+    console.log('Running drizzle migrations...');
     await migrate(db, { migrationsFolder: MIGRATIONS_FOLDER });
 
     const elapsed = Date.now() - startTime;
     await db.insert(migrationsHistory).values({
       timestamp: startTime,
-      name: 'db:reset',
+      name: 'drizzle-migrate',
       executionTime: elapsed,
       success: true,
     });
 
-    console.log(`Database reset completed! Time: ${elapsed}ms`);
+    console.log(`All migrations executed. Time: ${elapsed}ms`);
   } catch (error) {
-    console.error('Error during database reset:', error);
-    process.exit(1);
+    const elapsed = Date.now() - startTime;
+    await db.insert(migrationsHistory).values({
+      timestamp: startTime,
+      name: 'drizzle-migrate',
+      executionTime: elapsed,
+      success: false,
+      errorMessage: error instanceof Error ? error.message : String(error),
+    });
+    console.error('Migration failed:', error);
+    throw error;
   } finally {
     await pool.end();
   }
 }
 
 if (require.main === module) {
-  resetDatabase();
+  runMigrations()
+    .then(() => process.exit(0))
+    .catch(() => process.exit(1));
 }

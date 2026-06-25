@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { typeormDatabaseProviders } from './typeorm.database.providers';
+import { drizzleDatabaseProviders } from './drizzle.database.providers';
 
 @Module({
-  providers: [...typeormDatabaseProviders],
-  exports: [...typeormDatabaseProviders],
+  providers: [...drizzleDatabaseProviders],
+  exports: [...drizzleDatabaseProviders],
 })
 export class DatabaseModule {}
