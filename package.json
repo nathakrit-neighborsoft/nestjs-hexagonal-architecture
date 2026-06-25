@@ -28,7 +28,8 @@
     "schema:drop": "drizzle-kit drop",
     "db:reset": "ts-node -r tsconfig-paths/register src/databases/scripts/reset-database.ts",
     "db:status": "ts-node -r tsconfig-paths/register src/databases/scripts/migration-status.ts",
-    "db:stats": "ts-node -r tsconfig-paths/register src/databases/scripts/migration-stats.ts"
+    "db:stats": "ts-node -r tsconfig-paths/register src/databases/scripts/migration-stats.ts",
+    "db:seed": "ts-node -r tsconfig-paths/register src/databases/scripts/seed.ts"
   },
   "dependencies": {
     "@nestjs-cls/transactional": "^3.1.0",
