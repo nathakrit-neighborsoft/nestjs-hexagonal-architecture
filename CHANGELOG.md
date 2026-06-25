@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.1](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v2.1.0...v2.1.1) (2026-06-25)
+
+### Code Refactoring
+
+* **drones:** add operationId to swagger operations ([4fb0a85](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/4fb0a8530f22ef98f736c097d899bdfa90400667))
+
 ## [2.1.0](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v2.0.0...v2.1.0) (2026-06-25)
 
 ### Features
