@@ -1,0 +1,70 @@
+### Login
+# @name login
+POST {{host}}/auth/login
+content-type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+###
+
+@myAccessToken = {{login.response.body.accessToken}}
+
+### Create expense
+POST {{host}}/expenses
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "title": "Movie Ticket",
+    "amount": 860.50,
+    "date": "2025-08-28",
+    "category": "Entertainment",
+    "notes": "Movie ticket for the latest blockbuster"
+}
+
+### Get All Expenses
+GET {{host}}/expenses
+authorization: Bearer {{myAccessToken}}
+
+### Get All Expenses with filters
+GET {{host}}/expenses?category=Food2&startDate=2024-01-01&endDate=2024-12-31&page=1&limit=10&sort=date&order=DESC
+authorization: Bearer {{myAccessToken}}
+
+### Get All Expenses with filters
+GET {{host}}/expenses?startDate=2024-01-01&endDate=2024-12-31&page=1&limit=1&sort=date&order=DESC
+authorization: Bearer {{myAccessToken}}
+
+### Get All Expenses with filters no limit
+GET {{host}}/expenses?limit=-1&page=1&sort=date&order=DESC
+authorization: Bearer {{myAccessToken}}
+
+### Get Expense By Id (replace with actual expense ID)
+GET {{host}}/expenses/f9850d46-5a67-40af-a28f-de89c9b9dc7c
+authorization: Bearer {{myAccessToken}}
+
+### Update Expense By Id (replace with actual expense ID)
+PUT {{host}}/expenses/f9850d46-5a67-40af-a28f-de89c9b9dc7c
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "title": "Grocery Shopping Updated",
+    "amount": 180.50,
+    "date": "2025-08-28",
+    "category": "Food",
+    "notes": "Updated notes about the expense"
+}
+
+### Delete Expense By Id (replace with actual expense ID)
+DELETE {{host}}/expenses/f9850d46-5a67-40af-a28f-de89c9b9dc7c
+authorization: Bearer {{myAccessToken}}
+
+### Get Expense Report
+GET {{host}}/expenses/reports/by-category
+authorization: Bearer {{myAccessToken}}
+
+### Get Expense Report with date range
+GET {{host}}/expenses/reports/by-category?startDate=2024-01-01&endDate=2024-12-31
+authorization: Bearer {{myAccessToken}}

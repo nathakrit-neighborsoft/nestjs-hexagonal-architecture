@@ -1,0 +1,4 @@
+ช่วยสร้าง module ใหม่ชื่อ 'orders' สำหรับจัดการคำสั่งซื้อ
+ที่มีฟิลด์: customerId, items[], totalAmount, status, orderDate  
+พร้อม business rules: order total คำนวณจาก items, ไม่แก้ไข order ที่ shipped
+โดยใช้ ai-module-template-spec.md เป็นแนวทาง

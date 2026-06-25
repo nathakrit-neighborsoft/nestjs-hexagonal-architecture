@@ -1,0 +1,34 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "somethingShare": ""
+    },
+    "local": {
+      "useShare": "{{$shared somethingShare}}",
+      "host": "http://localhost:9009"
+    },
+    "develop": {
+      "host": "https://api-test.ex1app.com"
+    },
+    "staging": {
+      "host": "https://staging-api.com"
+    },
+    "uat": {
+      "host": "https://uat-api.com"
+    },
+    "production": {
+      "host": "https://api.alpha-bet.site"
+    }
+  },
+  "oxc.enable": true,
+  "cSpell.words": [
+    "bssid",
+    "childrens",
+    "dsphere",
+    "ex1",
+    "Metas",
+    "outbounds",
+    "usecase",
+    "usecases"
+  ]
+}

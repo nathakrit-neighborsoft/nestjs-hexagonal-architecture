@@ -1,0 +1,28 @@
+# Development Dockerfile for NestJS application
+FROM node:22.18.0-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files
+COPY package*.json ./
+COPY pnpm-lock.yaml ./
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Copy source code
+COPY . .
+
+# Copy initialization scripts
+COPY scripts/init-dev.sh /app/init-dev.sh
+COPY scripts/wait-for-db.js /app/scripts/wait-for-db.js
+
+# Expose ports
+EXPOSE 9009 9229
+
+# Start development server with initialization
+CMD ["/app/init-dev.sh"]

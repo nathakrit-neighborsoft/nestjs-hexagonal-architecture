@@ -1,0 +1,21 @@
+### Register a new user
+# @name register
+POST {{host}}/auth/register
+content-type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+###
+
+### Login
+# @name login
+POST {{host}}/auth/login
+content-type: application/json
+
+{
+  "email": "user1@example.com",
+  "password": "password123"
+}
+###

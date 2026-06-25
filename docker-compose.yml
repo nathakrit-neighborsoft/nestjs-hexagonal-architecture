@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: expense_tracker_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: expense_tracker
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/databases/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - expense_tracker_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d expense_tracker"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # NestJS API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: expense_tracker_api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 9009
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres123
+      DB_DATABASE: expense_tracker
+      DB_DIALECT: postgres
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production
+      DEFAULT_PASSWORD: admin123
+      DEFAULT_TIME_ZONE: Asia/Bangkok
+    ports:
+      - "9009:9009"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - expense_tracker_network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:9009/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  expense_tracker_network:
+    driver: bridge
