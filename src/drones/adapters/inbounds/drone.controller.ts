@@ -1,15 +1,34 @@
 import { Transactional } from '@nestjs-cls/transactional';
 import {
-  Body, Controller, Delete, Get, HttpCode, HttpStatus,
-  Param, ParseUUIDPipe, Post, Put, Query, UseGuards,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Builder, StrictBuilder } from 'builder-pattern';
 import { AuthGuard } from 'src/auth/auth.guard';
 import type {
-  Drone, DroneCompany, DroneCoveragePerDay, DroneFlightSpeed,
-  DroneFullName, DroneId, DroneModel, DronePriceRTF,
-  DroneRtfEquipment, DroneSprayWidth, DroneTankCapacity, IDrone,
+  Drone,
+  DroneCompany,
+  DroneCoveragePerDay,
+  DroneFlightSpeed,
+  DroneFullName,
+  DroneId,
+  DroneModel,
+  DronePriceRTF,
+  DroneRtfEquipment,
+  DroneSprayWidth,
+  DroneTankCapacity,
+  IDrone,
 } from '../../applications/domains/drone.domain';
 import { GetAllDronesQuery } from '../../applications/ports/drone.repository';
 import { CreateDroneUseCase } from '../../applications/usecases/createDrone.usecase';
@@ -19,6 +38,7 @@ import { GetDroneByIdUseCase } from '../../applications/usecases/getDroneById.us
 import { UpdateDroneByIdUseCase } from '../../applications/usecases/updateDroneById.usecase';
 import { CreateDroneDto } from './dto/createDrone.dto';
 import { DroneQueryDto } from './dto/droneQuery.dto';
+import { DroneResponseDto } from './dto/droneResponse.dto';
 import { UpdateDroneDto } from './dto/updateDrone.dto';
 
 @ApiTags('drones')
@@ -35,7 +55,7 @@ export class DroneController {
   @Get()
   @Transactional()
   @ApiOperation({ summary: 'Get all drones' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'Drones retrieved successfully.' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'Drones retrieved successfully.', type: [DroneResponseDto] })
   @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Internal server error.' })
   async getAll(@Query() queryDto: DroneQueryDto) {
     const query = StrictBuilder<GetAllDronesQuery>()
@@ -51,7 +71,7 @@ export class DroneController {
   @Get(':id')
   @Transactional()
   @ApiOperation({ summary: 'Get a drone by ID' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'Drone retrieved successfully.' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'Drone retrieved successfully.', type: DroneResponseDto })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Drone not found.' })
   @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Internal server error.' })
   @ApiParam({ name: 'id', type: String, description: 'The ID of the drone' })
@@ -63,7 +83,7 @@ export class DroneController {
   @Post()
   @Transactional()
   @ApiOperation({ summary: 'Create a drone' })
-  @ApiResponse({ status: HttpStatus.CREATED, description: 'Drone created successfully.' })
+  @ApiResponse({ status: HttpStatus.CREATED, description: 'Drone created successfully.', type: DroneResponseDto })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Invalid drone data.' })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized.' })
   @ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR, description: 'Internal server error.' })
@@ -86,7 +106,7 @@ export class DroneController {
   @Put(':id')
   @Transactional()
   @ApiOperation({ summary: 'Update a drone' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'Drone updated successfully.' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'Drone updated successfully.', type: DroneResponseDto })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Drone not found.' })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Invalid drone data.' })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized.' })
