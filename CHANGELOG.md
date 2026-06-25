@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v2.0.0...v2.1.0) (2026-06-25)
+
+### Features
+
+* **drones:** add OpenAPI response schema ([96bfb57](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/96bfb5749a03f16db4ae991d740e8d07ec19282a))
+
+### Code Refactoring
+
+* **auth:** simplify response handling with early return ([59ba814](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/59ba814cd3883b96e06edae688ba5f8e1f880baa))
+
 ## [2.0.0](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v1.0.0...v2.0.0) (2026-06-25)
 
 ### ⚠ BREAKING CHANGES
