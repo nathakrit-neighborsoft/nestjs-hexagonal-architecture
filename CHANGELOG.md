@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.0.0 (2026-06-25)
+
+### Features
+
+* 🎸 init project ([1ae3ee1](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/1ae3ee1bad56414402a5d44800da38511c34b6cd))
+* add drones & todos modules, migrate to Better Auth ([0b31b63](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/0b31b63d306e2e28ec3868d644fe1ec972f21cd7))
+* migrate from TypeORM to Drizzle ORM ([53e8f59](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/53e8f596ad67a8bdfae0eabc601bdedd7040acf7))
+
 ## [1.2.0](https://github.com/nathakritbc/nestjs-hexagonal-architecture-typeorm/compare/v1.1.0...v1.2.0) (2025-10-01)
 
 ### Features

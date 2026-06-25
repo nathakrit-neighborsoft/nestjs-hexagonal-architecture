@@ -1,6 +1,6 @@
 {
   "name": "nestjs-hexagonal-architecture",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "NestJS Hexagonal Architecture Drizzle ORM Project",
   "author": "Nathakrit Tato",
   "private": true,
