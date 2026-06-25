@@ -1,6 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
 import { port } from './configs/app.config';
@@ -38,7 +39,14 @@ function setupLogger(app: INestApplication): Logger {
 }
 
 function setupSwagger(app: INestApplication) {
-  SwaggerModule.setup('api', app, () => SwaggerModule.createDocument(app, swaggerConfig));
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  app.use(
+    '/docs',
+    apiReference({
+      theme: 'purple',
+      content: document,
+    }),
+  );
 }
 
 function setupPipes(app: INestApplication) {

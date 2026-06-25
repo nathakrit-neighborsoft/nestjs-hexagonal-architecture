@@ -13,11 +13,10 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Builder, StrictBuilder } from 'builder-pattern';
-import { JwtAuthGuard } from 'src/auth/jwtAuth.guard';
-import { accessKeyToken } from 'src/configs/jwt.config';
-import { UserId } from 'src/users/applications/domains/user.domain';
+import { AuthGuard } from 'src/auth/auth.guard';
+import type { UserId } from 'src/types/utility.type';
 import type {
   Expense,
   ExpenseAmount,
@@ -41,13 +40,11 @@ import { UpdateExpenseDto } from './dto/updateExpense.dto';
 
 interface AuthenticatedRequest extends Request {
   user: {
-    userId: string;
-    username: string;
+    id: string;
   };
 }
 
-@UseGuards(JwtAuthGuard)
-@ApiBearerAuth(accessKeyToken)
+@UseGuards(AuthGuard)
 @ApiTags('expenses')
 @Controller('expenses')
 export class ExpenseController {
@@ -86,7 +83,7 @@ export class ExpenseController {
       .date(new Date(createExpenseDto.date) as ExpenseDate)
       .category(createExpenseDto.category)
       .notes(createExpenseDto.notes)
-      .userId(req.user.userId as UserId)
+      .userId(req.user.id as UserId)
       .build();
 
     return this.createExpenseUseCase.execute(expense);
@@ -114,7 +111,7 @@ export class ExpenseController {
       .order(queryDto.order)
       .page(queryDto.page)
       .limit(queryDto.limit)
-      .userId(req.user.userId as UserId)
+      .userId(req.user.id as UserId)
       .category(queryDto.category)
       .startDate(queryDto.startDate ? new Date(queryDto.startDate) : undefined)
       .endDate(queryDto.endDate ? new Date(queryDto.endDate) : undefined)
@@ -144,7 +141,7 @@ export class ExpenseController {
   @Get(':id')
   @Transactional()
   async getById(@Param('id', ParseUUIDPipe) id: ExpenseId, @Request() req: AuthenticatedRequest) {
-    return this.getExpenseByIdUseCase.execute({ id, userId: req.user.userId as UserId });
+    return this.getExpenseByIdUseCase.execute({ id, userId: req.user.id as UserId });
   }
 
   @ApiOperation({ summary: 'Update an expense' })
@@ -179,7 +176,7 @@ export class ExpenseController {
     const date = updateExpenseDto.date ? new Date(updateExpenseDto.date) : new Date();
     const expense = Builder<Expense>()
       .uuid(id)
-      .userId(req.user.userId as UserId)
+      .userId(req.user.id as UserId)
       .title(updateExpenseDto.title as ExpenseTitle)
       .amount(updateExpenseDto.amount as ExpenseAmount)
       .date(date as ExpenseDate)
@@ -211,7 +208,7 @@ export class ExpenseController {
   @Delete(':id')
   @Transactional()
   async delete(@Param('id', ParseUUIDPipe) id: ExpenseId, @Request() req: AuthenticatedRequest) {
-    await this.deleteExpenseByIdUseCase.execute({ id, userId: req.user.userId as UserId });
+    await this.deleteExpenseByIdUseCase.execute({ id, userId: req.user.id as UserId });
   }
 
   @ApiOperation({ summary: 'Get expense report by category for the authenticated user' })
@@ -235,7 +232,7 @@ export class ExpenseController {
     @Request() req?: AuthenticatedRequest,
   ) {
     const query = StrictBuilder<GetExpenseReportQuery>()
-      .userId(req!.user.userId as UserId)
+      .userId(req!.user.id as UserId)
       .startDate(startDate ? new Date(startDate) : undefined)
       .endDate(endDate ? new Date(endDate) : undefined)
       .build();

@@ -1,5 +1,5 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import type { UserId } from 'src/users/applications/domains/user.domain';
+import type { UserId } from 'src/types/utility.type';
 import type { ExpenseId, IExpense } from '../domains/expense.domain';
 import type { ExpenseRepository } from '../ports/expense.repository';
 import { expenseRepositoryToken } from '../ports/expense.repository';

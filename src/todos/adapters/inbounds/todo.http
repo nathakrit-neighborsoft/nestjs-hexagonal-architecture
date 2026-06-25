@@ -1,0 +1,63 @@
+### Login
+# @name login
+POST {{host}}/auth/login
+content-type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+###
+
+@myAccessToken = {{login.response.body.accessToken}}
+
+### Get All Todos
+GET {{host}}/todos
+authorization: Bearer {{myAccessToken}}
+
+### Get All Todos filtered by drone
+GET {{host}}/todos?droneId=11111111-1111-1111-1111-111111111111
+authorization: Bearer {{myAccessToken}}
+
+### Get Todo By Id (replace with actual todo ID)
+GET {{host}}/todos/22222222-2222-2222-2222-222222222222
+authorization: Bearer {{myAccessToken}}
+
+### Create todo
+POST {{host}}/todos
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "title": "Replace propeller on drone #A1",
+    "description": "Need to replace the front-left propeller before next flight",
+    "droneId": "11111111-1111-1111-1111-111111111111"
+}
+
+### Create todo without drone
+POST {{host}}/todos
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "title": "Order spare parts"
+}
+
+### Update Todo By Id (replace with actual todo ID)
+PUT {{host}}/todos/22222222-2222-2222-2222-222222222222
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "title": "Replace propeller on drone #A1 - UPDATED",
+    "description": "Urgent: propeller showing signs of wear",
+    "completed": true
+}
+
+### Toggle Todo Completion (replace with actual todo ID)
+PATCH {{host}}/todos/22222222-2222-2222-2222-222222222222/toggle
+authorization: Bearer {{myAccessToken}}
+
+### Delete Todo By Id (replace with actual todo ID)
+DELETE {{host}}/todos/22222222-2222-2222-2222-222222222222
+authorization: Bearer {{myAccessToken}}

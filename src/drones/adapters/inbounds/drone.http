@@ -1,0 +1,59 @@
+### Login
+# @name login
+POST {{host}}/auth/login
+content-type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+###
+
+@myAccessToken = {{login.response.body.accessToken}}
+
+### Get All Drones
+GET {{host}}/drones
+
+### Get All Drones with search
+GET {{host}}/drones?search=DJI&sort=fullName&order=ASC&page=1&limit=10
+
+### Get Drone By Id (replace with actual drone ID)
+GET {{host}}/drones/11111111-1111-1111-1111-111111111111
+
+### Create drone
+POST {{host}}/drones
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "company": "DJI",
+    "model": "T40",
+    "fullName": "DJI Agras T40",
+    "priceRTF": 12000,
+    "tankCapacity": 40,
+    "flightSpeed": 10,
+    "sprayWidth": 11,
+    "coveragePerDay": 40,
+    "rtfEquipment": "Includes 2 batteries + charger"
+}
+
+### Update Drone By Id (replace with actual drone ID)
+PUT {{host}}/drones/11111111-1111-1111-1111-111111111111
+Content-Type: application/json
+authorization: Bearer {{myAccessToken}}
+
+{
+    "company": "DJI",
+    "model": "T50",
+    "fullName": "DJI Agras T50",
+    "priceRTF": 15000,
+    "tankCapacity": 50,
+    "flightSpeed": 12,
+    "sprayWidth": 12,
+    "coveragePerDay": 50,
+    "rtfEquipment": "Includes 3 batteries + charger"
+}
+
+### Delete Drone By Id (replace with actual drone ID)
+DELETE {{host}}/drones/11111111-1111-1111-1111-111111111111
+authorization: Bearer {{myAccessToken}}

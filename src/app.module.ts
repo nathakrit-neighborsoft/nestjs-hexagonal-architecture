@@ -9,9 +9,11 @@ import { httpConfig } from './configs/http.config';
 import { loggerConfig } from './configs/logger.config';
 import { drizzleRootConfig } from './configs/drizzle.config';
 import { DatabaseModule } from './databases/database.module';
+import { DronesModule } from './drones/drones.module';
 import { ExpensesModule } from './expenses/expenses.module';
 import { HealthModule } from './health/health.module';
-import { UserModule } from './users/user.module';
+import { TodosModule } from './todos/todos.module';
+
 
 @Module({
   imports: [
@@ -21,9 +23,11 @@ import { UserModule } from './users/user.module';
     LoggerModule.forRoot(loggerConfig),
     AuthModule,
     DatabaseModule,
+    DronesModule,
     ExpensesModule,
     HealthModule,
-    UserModule,
+    TodosModule,
+
   ],
   controllers: [],
   providers: [],

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AuthModule } from 'src/auth/auth.module';
 import { ExpenseController } from './adapters/inbounds/expense.controller';
 import { ExpenseDrizzleRepository } from './adapters/outbounds/expense.drizzle.repository';
 import { expenseRepositoryToken } from './applications/ports/expense.repository';
@@ -10,6 +11,7 @@ import { GetExpenseReportUseCase } from './applications/usecases/getExpenseRepor
 import { UpdateExpenseByIdUseCase } from './applications/usecases/updateExpenseById.usecase';
 
 @Module({
+  imports: [AuthModule],
   controllers: [ExpenseController],
   providers: [
     {

@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { and, asc, count, desc, eq, gte, ilike, lte, or, sql } from 'drizzle-orm';
 import { Builder, StrictBuilder } from 'builder-pattern';
 import { GetAllMetaType } from 'src/types/utility.type';
-import { UserId } from 'src/users/applications/domains/user.domain';
+import type { UserId } from 'src/types/utility.type';
 import { expenses } from 'src/databases/schemas';
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import * as schema from 'src/databases/schemas';

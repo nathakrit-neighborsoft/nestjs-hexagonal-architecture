@@ -26,3 +26,5 @@ export type CreatedAt = Brand<Date, 'CreatedAt'>;
 export type UpdatedAt = Brand<Date, 'UpdatedAt'>;
 
 export type Status = Brand<EStatus, 'Status'>;
+
+export type UserId = Brand<string, 'UserId'>;

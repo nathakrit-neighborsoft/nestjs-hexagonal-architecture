@@ -1,5 +1,5 @@
 import { GetAllMetaType, GetAllParamsType } from 'src/types/utility.type';
-import { UserId } from 'src/users/applications/domains/user.domain';
+import type { UserId } from 'src/types/utility.type';
 import { ExpenseId, IExpense } from '../domains/expense.domain';
 
 export type UpdateExpenseCommand = Partial<Omit<IExpense, 'uuid' | 'userId' | 'createdAt' | 'updatedAt'>>;

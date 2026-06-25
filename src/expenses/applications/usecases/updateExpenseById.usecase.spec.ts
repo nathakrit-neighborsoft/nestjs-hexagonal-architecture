@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { NotFoundException } from '@nestjs/common';
 import { Builder } from 'builder-pattern';
-import { UserId } from 'src/users/applications/domains/user.domain';
+import type { UserId } from 'src/types/utility.type';
 import { vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 import { ExpenseId, IExpense } from '../domains/expense.domain';

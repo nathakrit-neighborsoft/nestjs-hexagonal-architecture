@@ -1,5 +1,5 @@
 import { pgTable, uuid, varchar, decimal, date, text, timestamp, index } from 'drizzle-orm/pg-core';
-import { users } from './users.schema';
+import { user } from './auth.schema';
 
 export const expenses = pgTable('expenses', {
   uuid: uuid('uuid').defaultRandom().primaryKey(),
@@ -8,7 +8,7 @@ export const expenses = pgTable('expenses', {
   date: date('date').notNull(),
   category: varchar('category', { length: 100 }).notNull(),
   notes: text('notes'),
-  userId: uuid('user_id').notNull().references(() => users.uuid, { onDelete: 'cascade', onUpdate: 'cascade' }),
+  userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
   createdAt: timestamp('createdAt').defaultNow().notNull(),
   updatedAt: timestamp('updatedAt').defaultNow().notNull(),
 }, (table) => ({

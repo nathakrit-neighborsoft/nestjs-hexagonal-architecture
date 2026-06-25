@@ -1,26 +1,26 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
+import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
+import * as schema from 'src/databases/schemas';
+import { DatabaseModule } from 'src/databases/database.module';
+import { DRIZZLE_DB } from 'src/databases/drizzle.database.providers';
+import { AuthController } from './auth.controller';
+import { AuthGuard } from './auth.guard';
+import { AUTH_TOKEN } from './auth.token';
+import { createAuth } from './auth';
 
-import { jwtExpiresIn, jwtSecret } from '../configs/jwt.config';
-import { UserDrizzleRepository } from '../users/adapters/outbounds/user.drizzle.repository';
-import { userRepositoryToken } from '../users/applications/ports/user.repository';
-import { AuthController } from './adapters/inbounds/auth.controller';
-import { JwtStrategy } from './jwtStrategy';
-import { LoginUseCase } from './usecases/login.usecase';
-import { RegisterUseCase } from './usecases/register.usecase';
+type DrizzleDB = NodePgDatabase<typeof schema>;
 
 @Module({
-  imports: [JwtModule.register({ secret: jwtSecret, signOptions: { expiresIn: jwtExpiresIn } }), PassportModule],
+  imports: [DatabaseModule],
   controllers: [AuthController],
   providers: [
-    JwtStrategy,
-    LoginUseCase,
-    RegisterUseCase,
     {
-      provide: userRepositoryToken,
-      useClass: UserDrizzleRepository,
+      provide: AUTH_TOKEN,
+      inject: [DRIZZLE_DB],
+      useFactory: (db: DrizzleDB) => createAuth(db),
     },
+    AuthGuard,
   ],
+  exports: [AUTH_TOKEN, AuthGuard],
 })
 export class AuthModule {}

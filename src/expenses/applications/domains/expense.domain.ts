@@ -1,5 +1,5 @@
 import { Brand, CreatedAt, UpdatedAt } from 'src/types/utility.type';
-import { UserId } from 'src/users/applications/domains/user.domain';
+import type { UserId } from 'src/types/utility.type';
 
 export type ExpenseAmount = Brand<number, 'ExpenseAmount'>;
 export type ExpenseCategory = Brand<string, 'ExpenseCategory'>;
