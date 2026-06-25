@@ -28,8 +28,9 @@ export class AuthController {
     const body = await authResponse.text();
     if (body) {
       res.send(body);
-    } else {
-      res.end();
+      return;
     }
+
+    res.end();
   }
 }
