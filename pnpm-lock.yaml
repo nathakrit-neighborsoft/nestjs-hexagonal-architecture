@@ -35,9 +35,6 @@ importers:
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.9.0
-      '@scalar/nestjs-api-reference':
-        specifier: ^1.2.5
-        version: 1.2.5
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.17.0)(jiti@2.5.1)(terser@5.43.1))
@@ -1344,30 +1341,6 @@ packages:
     resolution: {integrity: sha512-CvUo2ixeIQGtF6WvuB87XWqPQkoFAFqW+HUo/WzHwuHDvIwZCtjdWXoYCcr06iKGydiqTclC4jU/TNObC/xKZg==}
     cpu: [x64]
     os: [win32]
-
-  '@scalar/client-side-rendering@0.2.5':
-    resolution: {integrity: sha512-lhoy8a7pSRwcTTwR6S1vbvT1zPI/E6iZfqhMJpUts04OxauHCzLUeiP2NHN3FhaShaadmeoH/yzZEoRZIEmgQg==}
-    engines: {node: '>=22'}
-
-  '@scalar/helpers@0.8.2':
-    resolution: {integrity: sha512-qNbqUjSB3S4Gr4A0oANcm5G1Ip+EqBxICYKhe9YzmnaBpbmW6shxqpiivApTvvuDf+uIhR3uMwWyVQbYcGLsxA==}
-    engines: {node: '>=22'}
-
-  '@scalar/nestjs-api-reference@1.2.5':
-    resolution: {integrity: sha512-RJRbxyPcI/XHWOtEg6asehcoJOgZxobbxlaH85yTfLOnsbVt8sCb1lNp+JZgX4rtMpon2itRIw4h33U2qQNWpg==}
-    engines: {node: '>=22'}
-
-  '@scalar/schemas@0.6.0':
-    resolution: {integrity: sha512-Oacaq7RTLhe3vWOoNc8tZufqthetu1VjWkdrGMMYoVSyMBQpvDI48gwBBQO6+iySeNpk9y8NHaGxqhHeoLbDiQ==}
-    engines: {node: '>=22'}
-
-  '@scalar/types@0.15.0':
-    resolution: {integrity: sha512-Rn9XAFrnQL4cAINCyNlPdvSbd3+Cvqgv2SBX1J8WgtZLxqC32+8Ptmns51Lvn6zKeiX+mFHk1UdvIWmqiG1xRg==}
-    engines: {node: '>=22'}
-
-  '@scalar/validation@0.6.0':
-    resolution: {integrity: sha512-tpmmG+/xRE2Kn9RpflU3AIyZv08v10+E1ZrJCx7z6+/91zHVxy0M73kC1LT4/8PbYNt85ywyC8+n+D99JdMcGA==}
-    engines: {node: '>=20'}
 
   '@scarf/scarf@1.4.0':
     resolution: {integrity: sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==}
@@ -3124,11 +3097,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.15:
-    resolution: {integrity: sha512-kBg3RpGtIe+RpTbyXwoI6pk5yD7KUiI3sygUqgeBMRst42KmhB4RZC7eiO9Wa1HIpaCCtpE2DJ6OI4Wi5ebwFw==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-
   nanoid@5.1.5:
     resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
     engines: {node: ^18 || >=20}
@@ -3941,10 +3909,6 @@ packages:
     resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}
     engines: {node: '>=0.10'}
 
-  tagged-tag@1.0.0:
-    resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
-    engines: {node: '>=20'}
-
   tapable@2.2.2:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
     engines: {node: '>=6'}
@@ -4111,10 +4075,6 @@ packages:
   type-fest@4.41.0:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
     engines: {node: '>=16'}
-
-  type-fest@5.7.0:
-    resolution: {integrity: sha512-1URUxUqfHFM1c+zfSPsa3gnkO7Aq21qyH75SIduNYz4SzY964rn1X2vCMQaHSHhktiw+0kPa2iyb6PUpXqB6Vg==}
-    engines: {node: '>=20'}
 
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
@@ -5289,32 +5249,6 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.46.2':
     optional: true
-
-  '@scalar/client-side-rendering@0.2.5':
-    dependencies:
-      '@scalar/schemas': 0.6.0
-      '@scalar/types': 0.15.0
-      '@scalar/validation': 0.6.0
-
-  '@scalar/helpers@0.8.2': {}
-
-  '@scalar/nestjs-api-reference@1.2.5':
-    dependencies:
-      '@scalar/client-side-rendering': 0.2.5
-
-  '@scalar/schemas@0.6.0':
-    dependencies:
-      '@scalar/helpers': 0.8.2
-      '@scalar/validation': 0.6.0
-
-  '@scalar/types@0.15.0':
-    dependencies:
-      '@scalar/helpers': 0.8.2
-      nanoid: 5.1.15
-      type-fest: 5.7.0
-      zod: 4.4.3
-
-  '@scalar/validation@0.6.0': {}
 
   '@scarf/scarf@1.4.0': {}
 
@@ -7082,8 +7016,6 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  nanoid@5.1.15: {}
-
   nanoid@5.1.5: {}
 
   nanostores@1.3.0: {}
@@ -7875,8 +7807,6 @@ snapshots:
 
   symbol-observable@4.0.0: {}
 
-  tagged-tag@1.0.0: {}
-
   tapable@2.2.2: {}
 
   temp-dir@3.0.0: {}
@@ -8025,10 +7955,6 @@ snapshots:
   type-fest@2.19.0: {}
 
   type-fest@4.41.0: {}
-
-  type-fest@5.7.0:
-    dependencies:
-      tagged-tag: 1.0.0
 
   type-is@1.6.18:
     dependencies:
