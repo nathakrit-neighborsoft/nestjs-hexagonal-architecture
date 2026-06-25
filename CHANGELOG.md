@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v1.0.0...v2.0.0) (2026-06-25)
+
+### ⚠ BREAKING CHANGES
+
+* **db:** existing users and their expenses/todos are
+dropped. Run `pnpm drizzle:migrate` then `pnpm db:seed`.
+Login: admin@example.com / admin123
+
+### Features
+
+* **db:** add Better Auth migration and seed script ([f25d715](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/f25d71519c45902d23ec6f0c4f48e1b4e7f227a4))
+
 ## 1.0.0 (2026-06-25)
 
 ### Features
