@@ -1,4 +1,5 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional, ApiSchema } from '@nestjs/swagger';
+
 import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 import type {
   DroneCompany, DroneModel, DroneFullName, DronePriceRTF,
@@ -6,6 +7,7 @@ import type {
   DroneCoveragePerDay, DroneRtfEquipment,
 } from '../../../applications/domains/drone.domain';
 
+@ApiSchema({ name: 'UpdateDrone' })
 export class UpdateDroneDto {
   @ApiPropertyOptional({ example: 'DJI', description: 'Drone manufacturer company' })
   @IsOptional() @IsString()
