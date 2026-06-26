@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.2](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v2.1.1...v2.1.2) (2026-06-26)
+
+### Code Refactoring
+
+* **drones:** expose clean schema names via @ApiSchema ([a89eaa9](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/commit/a89eaa9b1e1a6fa57dfa626698c715fc6c46e029))
+
 ## [2.1.1](https://github.com/nathakrit-neighborsoft/nestjs-hexagonal-architecture/compare/v2.1.0...v2.1.1) (2026-06-25)
 
 ### Code Refactoring
